@@ -13,30 +13,14 @@ class ListProdukController extends Controller
 
     foreach ($data as $produk) {
         $nama[] = $produk->name;
-        $deskripsi[] = $produk->descripti;
+        $deskripsi[] = $produk->description;
         $harga[] = $produk->price;
     }
 
     return view ('list_produk', compact ('nama','deskripsi', 'harga'));
     }
 
-    public function simpan(Request $request)
-    {
-        $data = $request->validate([
-            'nama' => 'required|string',
-            'deskripsi' => 'required|string',
-            'harga' => 'required|numeric',
-        ]);
-    
-        Produk::create([
-            'name' => $data['nama'],
-            'description' => $data['deskripsi'],
-            'price' => $data['harga'],
-        ]);
-    
-        return redirect()->back()->with('success', 'Data berhasil disimpan!');
-    }
-    
+   
     
 
     

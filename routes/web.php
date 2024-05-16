@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListProdukController;
+use App\Http\Controllers\AddProdukController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +13,14 @@ use App\Http\Controllers\ListProdukController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::redirect('/', '/listproduk');
+Route::get('/', function () {
+  return redirect('/listproduk');
+});
+Route::get('/addproduk', function () {
+  return view('tambah_produk');
+});
+Route::get('/listproduk', function () {
+  return view('list_produk');
+});
 Route::get('/listproduk', [ListProdukController::class, 'show'] );
-Route::post('/listproduk', [ListProdukController::class, 'simpan'] )->name('produk.simpan');
+Route::post('/addproduk', [AddProdukController::class, 'simpan'] )->name('produk.simpan');
